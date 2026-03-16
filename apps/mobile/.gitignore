@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Metro / cache
+.expo/
+.expo-shared/
+
+# Android
+android/.gradle/
+android/app/build/
+android/build/
+
+# iOS
+ios/build/
+ios/Pods/
+
+# Environment
+.env
+.env.*
+
+# Logs
+*.log

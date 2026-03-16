@@ -1,0 +1,19 @@
+{
+  "name": "honks",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Honks est un projet composé de trois produits principaux:\r - une API backend\r - une application web (site vitrine + administration)\r - une application mobile",
+  "license": "ISC",
+  "author": "GRONDIN Florent, SANKARE Jordan, VANDERLYNDEN Louis-Martin",
+  "type": "commonjs",
+  "directories": {
+    "doc": "docs"
+  },
+  "workspaces": [
+    "apps/*",
+    "shared/*"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+.next/
+out/
+coverage/
+
+# Environment
+.env
+.env.*
+
+# Logs
+*.log
