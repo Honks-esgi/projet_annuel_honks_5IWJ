@@ -1,0 +1,592 @@
+{
+  "testCredentials": {
+    "email": "alex.dupont@example.com",
+    "password": "honks123"
+  },
+  "platformFilters": ["TOUS", "PC", "PS5", "XBOX", "MOBILE"],
+
+  "User": [
+    {
+      "id": "8a0eeacc-4fa5-4f61-93a4-e90c738948ce",
+      "email": "alex.dupont@example.com",
+      "firstName": "Alex",
+      "lastName": "Dupont",
+      "birthDate": "2001-06-30",
+      "avatarUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=Alex",
+      "isActive": true,
+      "role": "ADMIN",
+      "lastLoginAt": "2026-06-24T13:46:46.598334Z",
+      "createdAt": "2026-03-16T14:46:46.598334Z",
+      "updatedAt": "2026-06-24T13:46:46.598334Z",
+      "username": "AlexProGamer",
+      "status": "ONLINE"
+    },
+    {
+      "id": "6456870f-59ad-4fe4-b56c-41bd4666686a",
+      "email": "sam.martin@example.com",
+      "firstName": "Sam",
+      "lastName": "Martin",
+      "birthDate": "2004-06-29",
+      "avatarUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=Sam",
+      "isActive": true,
+      "role": "USER",
+      "lastLoginAt": "2026-06-24T14:31:46.598334Z",
+      "createdAt": "2026-05-05T14:46:46.598334Z",
+      "updatedAt": "2026-06-24T14:31:46.598334Z",
+      "username": "Samurai99",
+      "status": "ONLINE"
+    },
+    {
+      "id": "8c9f5172-0ac9-4636-95ec-8d64bc00bb0a",
+      "email": "chloe.bernard@example.com",
+      "firstName": "Chloe",
+      "lastName": "Bernard",
+      "birthDate": "1998-07-01",
+      "avatarUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=Chloe",
+      "isActive": true,
+      "role": "USER",
+      "lastLoginAt": "2026-06-22T14:46:46.598334Z",
+      "createdAt": "2026-06-04T14:46:46.598334Z",
+      "updatedAt": "2026-06-22T14:46:46.598334Z",
+      "username": "ChloeB",
+      "status": "OFFLINE"
+    },
+    {
+      "id": "a1b2c3d4-0000-0000-0000-000000000001",
+      "email": "lucas.moreau@example.com",
+      "firstName": "Lucas",
+      "lastName": "Moreau",
+      "birthDate": "2002-03-14",
+      "avatarUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=Lucas",
+      "isActive": true,
+      "role": "USER",
+      "lastLoginAt": "2026-06-24T12:00:00.000000Z",
+      "createdAt": "2026-01-10T10:00:00.000000Z",
+      "updatedAt": "2026-06-24T12:00:00.000000Z",
+      "username": "LucasM",
+      "status": "ONLINE"
+    },
+    {
+      "id": "a1b2c3d4-0000-0000-0000-000000000002",
+      "email": "marie.lefevre@example.com",
+      "firstName": "Marie",
+      "lastName": "Lefèvre",
+      "birthDate": "2000-09-22",
+      "avatarUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=Marie",
+      "isActive": true,
+      "role": "USER",
+      "lastLoginAt": "2026-06-24T11:30:00.000000Z",
+      "createdAt": "2026-02-14T10:00:00.000000Z",
+      "updatedAt": "2026-06-24T11:30:00.000000Z",
+      "username": "MarieL",
+      "status": "ONLINE"
+    },
+    {
+      "id": "a1b2c3d4-0000-0000-0000-000000000003",
+      "email": "tom.girard@example.com",
+      "firstName": "Tom",
+      "lastName": "Girard",
+      "birthDate": "1999-11-05",
+      "avatarUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=Tom",
+      "isActive": true,
+      "role": "USER",
+      "lastLoginAt": "2026-06-24T10:00:00.000000Z",
+      "createdAt": "2026-03-01T10:00:00.000000Z",
+      "updatedAt": "2026-06-24T10:00:00.000000Z",
+      "username": "TomG",
+      "status": "AWAY"
+    },
+    {
+      "id": "a1b2c3d4-0000-0000-0000-000000000004",
+      "email": "jules.blanc@example.com",
+      "firstName": "Jules",
+      "lastName": "Blanc",
+      "birthDate": "2003-07-17",
+      "avatarUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=Jules",
+      "isActive": true,
+      "role": "USER",
+      "lastLoginAt": "2026-06-23T20:00:00.000000Z",
+      "createdAt": "2026-04-20T10:00:00.000000Z",
+      "updatedAt": "2026-06-23T20:00:00.000000Z",
+      "username": "JulesB",
+      "status": "OFFLINE"
+    },
+    {
+      "id": "a1b2c3d4-0000-0000-0000-000000000005",
+      "email": "lea.petit@example.com",
+      "firstName": "Léa",
+      "lastName": "Petit",
+      "birthDate": "2001-02-28",
+      "avatarUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=Lea",
+      "isActive": true,
+      "role": "USER",
+      "lastLoginAt": "2026-06-22T18:00:00.000000Z",
+      "createdAt": "2026-05-01T10:00:00.000000Z",
+      "updatedAt": "2026-06-22T18:00:00.000000Z",
+      "username": "LéaP",
+      "status": "OFFLINE"
+    },
+    {
+      "id": "a1b2c3d4-0000-0000-0000-000000000006",
+      "email": "hugo.simon@example.com",
+      "firstName": "Hugo",
+      "lastName": "Simon",
+      "birthDate": "2000-05-11",
+      "avatarUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=Hugo",
+      "isActive": true,
+      "role": "USER",
+      "lastLoginAt": "2026-06-21T16:00:00.000000Z",
+      "createdAt": "2026-05-10T10:00:00.000000Z",
+      "updatedAt": "2026-06-21T16:00:00.000000Z",
+      "username": "HugoS",
+      "status": "OFFLINE"
+    }
+  ],
+
+  "UserAuth": [
+    {
+      "userId": "8a0eeacc-4fa5-4f61-93a4-e90c738948ce",
+      "passwordHash": "$2b$10$hashedpasswordstring...",
+      "verificationToken": null,
+      "resetPasswordToken": null,
+      "emailVerifiedAt": "2026-03-17T14:46:46.598334Z",
+      "createdAt": "2026-03-16T14:46:46.598334Z",
+      "updatedAt": "2026-03-16T14:46:46.598334Z"
+    }
+  ],
+
+  "UserOAuth": [
+    {
+      "id": "39c9a9d1-c117-4cc0-b24a-2949a92e51b5",
+      "userId": "6456870f-59ad-4fe4-b56c-41bd4666686a",
+      "provider": "DISCORD",
+      "providerAccountId": "123456789012345678",
+      "createdAt": "2026-05-05T14:46:46.598334Z",
+      "updatedAt": "2026-05-05T14:46:46.598334Z"
+    }
+  ],
+
+  "UserDevice": [
+    {
+      "id": "f92e7cfb-772f-4527-a6a4-1a4537a93e31",
+      "userId": "8a0eeacc-4fa5-4f61-93a4-e90c738948ce",
+      "platform": "IOS",
+      "fcmToken": "token_ios_abc123...",
+      "lastSeenAt": "2026-06-24T13:46:46.598334Z",
+      "createdAt": "2026-03-16T14:46:46.598334Z",
+      "updatedAt": "2026-06-24T13:46:46.598334Z"
+    },
+    {
+      "id": "9fb9b293-444b-40ec-bada-63212bd747a6",
+      "userId": "6456870f-59ad-4fe4-b56c-41bd4666686a",
+      "platform": "ANDROID",
+      "fcmToken": "token_android_xyz789...",
+      "lastSeenAt": "2026-06-24T14:31:46.598334Z",
+      "createdAt": "2026-05-05T14:46:46.598334Z",
+      "updatedAt": "2026-06-24T14:31:46.598334Z"
+    }
+  ],
+
+  "Friendship": [
+    {
+      "id": "b89d40ba-8629-4d09-9fe8-756ed5c15ebe",
+      "requesterId": "8a0eeacc-4fa5-4f61-93a4-e90c738948ce",
+      "receiverId": "6456870f-59ad-4fe4-b56c-41bd4666686a",
+      "status": "ACCEPTED",
+      "createdAt": "2026-05-15T14:46:46.598334Z",
+      "updatedAt": "2026-05-16T14:46:46.598334Z"
+    },
+    {
+      "id": "3334ff27-9885-472b-95b2-d2f8279f583f",
+      "requesterId": "8a0eeacc-4fa5-4f61-93a4-e90c738948ce",
+      "receiverId": "8c9f5172-0ac9-4636-95ec-8d64bc00bb0a",
+      "status": "PENDING",
+      "createdAt": "2026-06-23T14:46:46.598334Z",
+      "updatedAt": "2026-06-23T14:46:46.598334Z"
+    },
+    {
+      "id": "fr-000000-0000-0000-0000-000000000001",
+      "requesterId": "a1b2c3d4-0000-0000-0000-000000000001",
+      "receiverId": "8a0eeacc-4fa5-4f61-93a4-e90c738948ce",
+      "status": "PENDING",
+      "createdAt": "2026-06-24T09:00:00.000000Z",
+      "updatedAt": "2026-06-24T09:00:00.000000Z"
+    },
+    {
+      "id": "fr-000000-0000-0000-0000-000000000002",
+      "requesterId": "a1b2c3d4-0000-0000-0000-000000000005",
+      "receiverId": "8a0eeacc-4fa5-4f61-93a4-e90c738948ce",
+      "status": "PENDING",
+      "createdAt": "2026-06-23T20:00:00.000000Z",
+      "updatedAt": "2026-06-23T20:00:00.000000Z"
+    },
+    {
+      "id": "fr-000000-0000-0000-0000-000000000003",
+      "requesterId": "8a0eeacc-4fa5-4f61-93a4-e90c738948ce",
+      "receiverId": "a1b2c3d4-0000-0000-0000-000000000002",
+      "status": "ACCEPTED",
+      "createdAt": "2026-06-10T10:00:00.000000Z",
+      "updatedAt": "2026-06-11T10:00:00.000000Z"
+    },
+    {
+      "id": "fr-000000-0000-0000-0000-000000000004",
+      "requesterId": "8a0eeacc-4fa5-4f61-93a4-e90c738948ce",
+      "receiverId": "a1b2c3d4-0000-0000-0000-000000000003",
+      "status": "ACCEPTED",
+      "createdAt": "2026-06-12T10:00:00.000000Z",
+      "updatedAt": "2026-06-13T10:00:00.000000Z"
+    },
+    {
+      "id": "fr-000000-0000-0000-0000-000000000005",
+      "requesterId": "8a0eeacc-4fa5-4f61-93a4-e90c738948ce",
+      "receiverId": "a1b2c3d4-0000-0000-0000-000000000004",
+      "status": "ACCEPTED",
+      "createdAt": "2026-06-15T10:00:00.000000Z",
+      "updatedAt": "2026-06-16T10:00:00.000000Z"
+    },
+    {
+      "id": "fr-000000-0000-0000-0000-000000000006",
+      "requesterId": "8a0eeacc-4fa5-4f61-93a4-e90c738948ce",
+      "receiverId": "a1b2c3d4-0000-0000-0000-000000000006",
+      "status": "ACCEPTED",
+      "createdAt": "2026-06-18T10:00:00.000000Z",
+      "updatedAt": "2026-06-19T10:00:00.000000Z"
+    }
+  ],
+
+  "Flock": [
+    {
+      "id": "9c963575-fcb9-4c13-bd34-9e2cf7581b55",
+      "name": "Les Tryharders",
+      "description": "Groupe pour ceux qui visent le rang max sur Valorant.",
+      "avatarUrl": "https://api.dicebear.com/7.x/initials/svg?seed=LT",
+      "inviteCode": "TRY-VALO-123",
+      "isPrivate": false,
+      "ownerId": "8a0eeacc-4fa5-4f61-93a4-e90c738948ce",
+      "createdAt": "2026-06-14T14:46:46.598334Z",
+      "updatedAt": "2026-06-14T14:46:46.598334Z"
+    }
+  ],
+
+  "UserFlock": [
+    {
+      "id": "69d8f2dd-f786-49a1-a107-f2fd6b2e1845",
+      "userId": "8a0eeacc-4fa5-4f61-93a4-e90c738948ce",
+      "flockId": "9c963575-fcb9-4c13-bd34-9e2cf7581b55",
+      "joinedAt": "2026-06-14T14:46:46.598334Z",
+      "createdAt": "2026-06-14T14:46:46.598334Z",
+      "updatedAt": "2026-06-14T14:46:46.598334Z"
+    },
+    {
+      "id": "ff60f442-af10-44fa-b39a-ffcf8393e683",
+      "userId": "6456870f-59ad-4fe4-b56c-41bd4666686a",
+      "flockId": "9c963575-fcb9-4c13-bd34-9e2cf7581b55",
+      "joinedAt": "2026-06-16T14:46:46.598334Z",
+      "createdAt": "2026-06-16T14:46:46.598334Z",
+      "updatedAt": "2026-06-16T14:46:46.598334Z"
+    }
+  ],
+
+  "Game": [
+    {
+      "igdbId": 114288,
+      "name": "Valorant",
+      "slug": "valorant",
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2mvt.png",
+      "genres": ["Tactical Shooter", "FPS"],
+      "onlineMax": 10,
+      "offlineMax": 0,
+      "platforms": ["PC"],
+      "active": true,
+      "updatedAt": "2025-12-06T14:46:46.598334Z",
+      "isFavorite": true
+    },
+    {
+      "igdbId": 119133,
+      "name": "Elden Ring",
+      "slug": "elden-ring",
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co4jni.png",
+      "genres": ["RPG", "Action"],
+      "onlineMax": 6,
+      "offlineMax": 1,
+      "platforms": ["PC", "PS5", "Xbox Series", "PS4", "Xbox One"],
+      "active": true,
+      "updatedAt": "2025-12-06T14:46:46.598334Z",
+      "isFavorite": true
+    },
+    {
+      "igdbId": 11198,
+      "name": "League of Legends",
+      "slug": "league-of-legends",
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co49wj.png",
+      "genres": ["MOBA", "Strategy"],
+      "onlineMax": 10,
+      "offlineMax": 0,
+      "platforms": ["PC"],
+      "active": true,
+      "updatedAt": "2025-12-06T14:46:46.598334Z",
+      "isFavorite": true
+    },
+    {
+      "igdbId": 1905,
+      "name": "Fortnite",
+      "slug": "fortnite",
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co3wk8.png",
+      "genres": ["Battle Royale", "Shooter"],
+      "onlineMax": 100,
+      "offlineMax": 0,
+      "platforms": ["PC", "PS5", "Xbox Series", "MOBILE"],
+      "active": true,
+      "updatedAt": "2025-12-06T14:46:46.598334Z",
+      "isFavorite": false
+    },
+    {
+      "igdbId": 101483,
+      "name": "Apex Legends",
+      "slug": "apex-legends",
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1tfj.png",
+      "genres": ["Battle Royale", "FPS"],
+      "onlineMax": 60,
+      "offlineMax": 0,
+      "platforms": ["PC", "PS5", "Xbox Series", "MOBILE"],
+      "active": true,
+      "updatedAt": "2025-12-06T14:46:46.598334Z",
+      "isFavorite": false
+    },
+    {
+      "igdbId": 9767,
+      "name": "Minecraft",
+      "slug": "minecraft",
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co49x5.png",
+      "genres": ["Sandbox", "Survival"],
+      "onlineMax": 20,
+      "offlineMax": 1,
+      "platforms": ["PC", "PS5", "Xbox Series", "MOBILE"],
+      "active": true,
+      "updatedAt": "2025-12-06T14:46:46.598334Z",
+      "isFavorite": false
+    },
+    {
+      "igdbId": 37974,
+      "name": "Rocket League",
+      "slug": "rocket-league",
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1rb2.png",
+      "genres": ["Sports", "Racing"],
+      "onlineMax": 6,
+      "offlineMax": 2,
+      "platforms": ["PC", "PS5", "Xbox Series"],
+      "active": true,
+      "updatedAt": "2025-12-06T14:46:46.598334Z",
+      "isFavorite": false
+    },
+    {
+      "igdbId": 252649,
+      "name": "CS2",
+      "slug": "cs2",
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co6996.png",
+      "genres": ["Tactical Shooter", "FPS"],
+      "onlineMax": 10,
+      "offlineMax": 0,
+      "platforms": ["PC"],
+      "active": true,
+      "updatedAt": "2025-12-06T14:46:46.598334Z",
+      "isFavorite": false
+    },
+    {
+      "igdbId": 136280,
+      "name": "Overwatch 2",
+      "slug": "overwatch-2",
+      "coverUrl": "https://images.igdb.com/igdb/image/upload/t_cover_big/co5dtc.png",
+      "genres": ["Hero Shooter", "FPS"],
+      "onlineMax": 12,
+      "offlineMax": 0,
+      "platforms": ["PC", "PS5", "Xbox Series"],
+      "active": true,
+      "updatedAt": "2025-12-06T14:46:46.598334Z",
+      "isFavorite": false
+    }
+  ],
+
+  "Honk": [
+    {
+      "id": "8174681f-e75a-4f5c-82bc-ebb6e41ca9b3",
+      "creatorId": "8a0eeacc-4fa5-4f61-93a4-e90c738948ce",
+      "gameId": 114288,
+      "message": "Dispo pour de la ranked ? Il nous manque un smoker.",
+      "status": "ACTIVE",
+      "expiresAt": "2026-06-24T16:46:46.598334Z",
+      "createdAt": "2026-06-24T14:16:46.598334Z",
+      "updatedAt": "2026-06-24T14:16:46.598334Z"
+    },
+    {
+      "id": "recv-honk-0000-0000-0000-000000000001",
+      "creatorId": "6456870f-59ad-4fe4-b56c-41bd4666686a",
+      "gameId": 114288,
+      "message": "Dispo pour du unrated ? On cherche un IGL.",
+      "status": "ACTIVE",
+      "expiresAt": "2026-06-24T17:30:00.000000Z",
+      "createdAt": "2026-06-24T15:00:00.000000Z",
+      "updatedAt": "2026-06-24T15:00:00.000000Z"
+    },
+    {
+      "id": "recv-honk-0000-0000-0000-000000000002",
+      "creatorId": "a1b2c3d4-0000-0000-0000-000000000002",
+      "gameId": 119133,
+      "message": "Invasion Elden Ring ce soir, besoin d'un co-op.",
+      "status": "ACTIVE",
+      "expiresAt": "2026-06-24T19:00:00.000000Z",
+      "createdAt": "2026-06-24T15:30:00.000000Z",
+      "updatedAt": "2026-06-24T15:30:00.000000Z"
+    },
+    {
+      "id": "recv-honk-accepted-001",
+      "creatorId": "a1b2c3d4-0000-0000-0000-000000000001",
+      "gameId": 37974,
+      "message": "On fait des games custom ce soir, 3v3 !",
+      "status": "EXPIRED",
+      "expiresAt": "2026-06-24T10:00:00.000000Z",
+      "createdAt": "2026-06-24T09:00:00.000000Z",
+      "updatedAt": "2026-06-24T10:00:00.000000Z"
+    },
+    {
+      "id": "recv-honk-declined-001",
+      "creatorId": "8c9f5172-0ac9-4636-95ec-8d64bc00bb0a",
+      "gameId": 9767,
+      "message": "Survival Minecraft, on refait le serveur ?",
+      "status": "EXPIRED",
+      "expiresAt": "2026-06-24T11:00:00.000000Z",
+      "createdAt": "2026-06-24T10:00:00.000000Z",
+      "updatedAt": "2026-06-24T11:00:00.000000Z"
+    }
+  ],
+
+  "HonkRecipient": [
+    {
+      "id": "9f85ec40-a279-47b8-baf0-9a4918958e10",
+      "honkId": "8174681f-e75a-4f5c-82bc-ebb6e41ca9b3",
+      "userId": "6456870f-59ad-4fe4-b56c-41bd4666686a",
+      "response": "ACCEPTED",
+      "respondedAt": "2026-06-24T14:21:46.598334Z",
+      "createdAt": "2026-06-24T14:16:46.598334Z",
+      "updatedAt": "2026-06-24T14:21:46.598334Z"
+    },
+    {
+      "id": "2776c76a-2858-47e0-bf0b-ce64e8643f2c",
+      "honkId": "8174681f-e75a-4f5c-82bc-ebb6e41ca9b3",
+      "userId": "8c9f5172-0ac9-4636-95ec-8d64bc00bb0a",
+      "response": "PENDING",
+      "respondedAt": null,
+      "createdAt": "2026-06-24T14:16:46.598334Z",
+      "updatedAt": "2026-06-24T14:16:46.598334Z"
+    },
+    {
+      "id": "recv-hrec-0000-0000-0000-000000000001",
+      "honkId": "recv-honk-0000-0000-0000-000000000001",
+      "userId": "8a0eeacc-4fa5-4f61-93a4-e90c738948ce",
+      "response": "PENDING",
+      "respondedAt": null,
+      "createdAt": "2026-06-24T15:00:00.000000Z",
+      "updatedAt": "2026-06-24T15:00:00.000000Z"
+    },
+    {
+      "id": "recv-hrec-0000-0000-0000-000000000002",
+      "honkId": "recv-honk-0000-0000-0000-000000000002",
+      "userId": "8a0eeacc-4fa5-4f61-93a4-e90c738948ce",
+      "response": "PENDING",
+      "respondedAt": null,
+      "createdAt": "2026-06-24T15:30:00.000000Z",
+      "updatedAt": "2026-06-24T15:30:00.000000Z"
+    },
+    {
+      "id": "recv-hrec-accepted-001",
+      "honkId": "recv-honk-accepted-001",
+      "userId": "8a0eeacc-4fa5-4f61-93a4-e90c738948ce",
+      "response": "ACCEPTED",
+      "respondedAt": "2026-06-24T09:05:00.000000Z",
+      "createdAt": "2026-06-24T09:00:00.000000Z",
+      "updatedAt": "2026-06-24T09:05:00.000000Z"
+    },
+    {
+      "id": "recv-hrec-declined-001",
+      "honkId": "recv-honk-declined-001",
+      "userId": "8a0eeacc-4fa5-4f61-93a4-e90c738948ce",
+      "response": "DECLINED",
+      "respondedAt": "2026-06-24T10:05:00.000000Z",
+      "createdAt": "2026-06-24T10:00:00.000000Z",
+      "updatedAt": "2026-06-24T10:05:00.000000Z"
+    }
+  ],
+
+  "Session": [
+    {
+      "id": "0502916d-e5a0-4c37-a833-ca5a955e6fbb",
+      "honkId": "8174681f-e75a-4f5c-82bc-ebb6e41ca9b3",
+      "creatorId": "8a0eeacc-4fa5-4f61-93a4-e90c738948ce",
+      "status": "ACTIVE",
+      "startedAt": "2026-06-24T14:26:46.598334Z",
+      "endedAt": null,
+      "createdAt": "2026-06-24T14:21:46.598334Z",
+      "updatedAt": "2026-06-24T14:26:46.598334Z"
+    }
+  ],
+
+  "SessionParticipant": [
+    {
+      "id": "e1db295a-f19c-410d-b9a3-83b5b920b51e",
+      "sessionId": "0502916d-e5a0-4c37-a833-ca5a955e6fbb",
+      "userId": "8a0eeacc-4fa5-4f61-93a4-e90c738948ce",
+      "role": "HOST",
+      "joinedAt": "2026-06-24T14:21:46.598334Z",
+      "leftAt": null,
+      "createdAt": "2026-06-24T14:21:46.598334Z",
+      "updatedAt": "2026-06-24T14:21:46.598334Z"
+    },
+    {
+      "id": "b2e99bee-3c2f-474a-a1eb-9964b7cab2b5",
+      "sessionId": "0502916d-e5a0-4c37-a833-ca5a955e6fbb",
+      "userId": "6456870f-59ad-4fe4-b56c-41bd4666686a",
+      "role": "MEMBER",
+      "joinedAt": "2026-06-24T14:26:46.598334Z",
+      "leftAt": null,
+      "createdAt": "2026-06-24T14:26:46.598334Z",
+      "updatedAt": "2026-06-24T14:26:46.598334Z"
+    }
+  ],
+
+  "SessionInvitation": [
+    {
+      "id": "b0291600-ac3a-4d08-b45f-a66afad1c267",
+      "sessionId": "0502916d-e5a0-4c37-a833-ca5a955e6fbb",
+      "senderId": "8a0eeacc-4fa5-4f61-93a4-e90c738948ce",
+      "receiverId": "8c9f5172-0ac9-4636-95ec-8d64bc00bb0a",
+      "status": "PENDING",
+      "createdAt": "2026-06-24T14:26:46.598334Z",
+      "updatedAt": "2026-06-24T14:26:46.598334Z"
+    }
+  ],
+
+  "Notification": [
+    {
+      "id": "33e9cbfc-b1ea-47b5-8ba5-4ad422036596",
+      "receiverId": "6456870f-59ad-4fe4-b56c-41bd4666686a",
+      "type": "HONK_RECEIVED",
+      "payload": {
+        "honkId": "8174681f-e75a-4f5c-82bc-ebb6e41ca9b3",
+        "message": "Nouveau Honk de AlexProGamer pour Valorant"
+      },
+      "isRead": true,
+      "createdAt": "2026-06-24T14:16:46.598334Z"
+    },
+    {
+      "id": "08eb2d70-1ff2-4fe9-9a03-aa8a27441807",
+      "receiverId": "8c9f5172-0ac9-4636-95ec-8d64bc00bb0a",
+      "type": "HONK_RECEIVED",
+      "payload": {
+        "honkId": "8174681f-e75a-4f5c-82bc-ebb6e41ca9b3",
+        "message": "Nouveau Honk de AlexProGamer pour Valorant"
+      },
+      "isRead": false,
+      "createdAt": "2026-06-24T14:16:46.598334Z"
+    }
+  ]
+}
