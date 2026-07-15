@@ -9,7 +9,7 @@ EXPOSE 3001
 
 FROM base AS deps
 COPY apps/web/package*.json ./
-RUN npm ci
+RUN npm install
 
 FROM base AS build
 COPY --from=deps /app/apps/web/node_modules ./node_modules
