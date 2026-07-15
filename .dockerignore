@@ -1,0 +1,16 @@
+node_modules
+**/node_modules
+**/.next
+**/.expo
+**/dist
+**/build
+**/.env*
+!**/.env.example
+.git
+.github
+.claude
+docs
+infra
+**/*.log
+**/coverage
+**/.DS_Store
