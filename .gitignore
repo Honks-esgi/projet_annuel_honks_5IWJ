@@ -41,6 +41,7 @@ android/build/
 ios/build/
 ios/Pods/
 *.keystore
+/docs
 
 # Tests / playwright
 playwright-report/
