@@ -40,14 +40,17 @@ jobs:
               - 'apps/api/**'
               - 'shared/**'
               - 'package*.json'
+              - 'VERSION'
             web:
               - 'apps/web/**'
               - 'shared/**'
               - 'package*.json'
+              - 'VERSION'
             mobile:
               - 'apps/mobile/**'
               - 'shared/**'
               - 'package*.json'
+              - 'VERSION'
 
   build:
     name: Build & push ${{ matrix.app.name }}
@@ -112,6 +115,11 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Read version
+        if: steps.check.outputs.should_build == 'true'
+        id: version
+        run: echo "value=$(cat VERSION)" >> $GITHUB_OUTPUT
+
       - name: Generate tags & labels
         if: steps.check.outputs.should_build == 'true'
         id: meta
@@ -122,10 +130,9 @@ jobs:
             latest=false
           tags: |
             type=raw,value=latest,enable=${{ github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/main' }}
+            type=raw,value=${{ steps.version.outputs.value }}
             type=ref,event=branch
             type=sha,prefix=sha-,format=short
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
 
       - name: Build & push
         if: steps.check.outputs.should_build == 'true'
