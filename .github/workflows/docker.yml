@@ -130,7 +130,7 @@ jobs:
             latest=false
           tags: |
             type=raw,value=latest,enable=${{ github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/main' }}
-            type=raw,value=${{ steps.version.outputs.value }}
+            type=raw,value=${{ steps.version.outputs.value }},enable=${{ github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/preprod' || github.ref == 'refs/heads/main' }}
             type=ref,event=branch
             type=sha,prefix=sha-,format=short
 
