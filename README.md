@@ -1,5 +1,9 @@
 # Honks
 
+[![Lint](https://github.com/Honks-esgi/projet_annuel_honks_5IWJ/actions/workflows/lint.yml/badge.svg)](https://github.com/Honks-esgi/projet_annuel_honks_5IWJ/actions/workflows/lint.yml)
+[![Tests](https://github.com/Honks-esgi/projet_annuel_honks_5IWJ/actions/workflows/tests.yml/badge.svg)](https://github.com/Honks-esgi/projet_annuel_honks_5IWJ/actions/workflows/tests.yml)
+[![Docker Build & Push](https://github.com/Honks-esgi/projet_annuel_honks_5IWJ/actions/workflows/docker.yml/badge.svg)](https://github.com/Honks-esgi/projet_annuel_honks_5IWJ/actions/workflows/docker.yml)
+
 Honks est un projet composé de trois produits principaux:
 - une API backend
 - une application web (site vitrine + administration)
@@ -82,3 +86,4 @@ honks/
 2. Ajouter un premier docker-compose de dev.
 3. Definir le schema de donnees initial (users, groups, sessions, invites).
 4. Ecrire les premiers contrats d'API et evenements temps reel.
+
