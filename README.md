@@ -4,6 +4,8 @@
 [![Tests](https://github.com/Honks-esgi/projet_annuel_honks_5IWJ/actions/workflows/tests.yml/badge.svg)](https://github.com/Honks-esgi/projet_annuel_honks_5IWJ/actions/workflows/tests.yml)
 [![Docker Build & Push](https://github.com/Honks-esgi/projet_annuel_honks_5IWJ/actions/workflows/docker.yml/badge.svg)](https://github.com/Honks-esgi/projet_annuel_honks_5IWJ/actions/workflows/docker.yml)
 
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/Honks-esgi/projet_annuel_honks_5IWJ/badge)](https://scorecard.dev/viewer/?uri=github.com/Honks-esgi/projet_annuel_honks_5IWJ)
+
 Honks est un projet composé de trois produits principaux:
 - une API backend
 - une application web (site vitrine + administration)
