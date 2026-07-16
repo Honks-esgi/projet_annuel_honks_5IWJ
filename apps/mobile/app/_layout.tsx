@@ -16,6 +16,11 @@ export default function RootLayout() {
     if (loaded) SplashScreen.hideAsync();
   }, [loaded]);
 
+  useEffect(() => {
+    const apiUrl = process.env.EXPO_PUBLIC_API_URL ?? 'http://localhost:3000';
+    fetch(`${apiUrl}/?source=honks-mobile`).catch(() => {});
+  }, []);
+
   if (!loaded) return null;
 
   return (

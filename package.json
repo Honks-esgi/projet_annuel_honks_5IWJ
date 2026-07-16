@@ -10,7 +10,9 @@
     "doc": "docs"
   },
   "jest": {
-    "testMatch": ["<rootDir>/tests/**/*.test.js"]
+    "testMatch": [
+      "<rootDir>/tests/**/*.test.js"
+    ]
   },
   "workspaces": [
     "apps/*",
@@ -19,12 +21,25 @@
   "scripts": {
     "lint": "npx eslint .",
     "test": "jest",
-    "docker:dev": "docker compose -f docker-compose.dev.yml up -d --build",
-    "docker:preprod": "docker compose -f docker-compose.preprod.yml up -d --build",
-    "docker:prod": "docker compose -f docker-compose.prod.yml up -d --build",
+    "docker:dev:up": "docker compose -f docker-compose.dev.yml up -d --build",
+    "docker:dev:down": "docker compose -f docker-compose.dev.yml down -v",
+    "docker:preprod:up": "docker compose -f docker-compose.preprod.yml up -d --build",
+    "docker:preprod:down": "docker compose -f docker-compose.preprod.yml down",
+    "docker:prod:up": "docker compose -f docker-compose.prod.yml up -d --build",
+    "docker:prod:down": "docker compose -f docker-compose.prod.yml down",
     "docker:image:api": "TAG=$(git rev-parse --abbrev-ref HEAD | sed 's/\\//-/g') && docker build -f apps/api/Dockerfile -t jsankare/honks-api:$TAG . && docker push jsankare/honks-api:$TAG",
     "docker:image:web": "TAG=$(git rev-parse --abbrev-ref HEAD | sed 's/\\//-/g') && docker build -f apps/web/Dockerfile -t jsankare/honks-web:$TAG . && docker push jsankare/honks-web:$TAG",
     "docker:image:app": "TAG=$(git rev-parse --abbrev-ref HEAD | sed 's/\\//-/g') && docker build -f apps/mobile/Dockerfile -t jsankare/honks-app:$TAG . && docker push jsankare/honks-app:$TAG",
     "docker:image:all": "npm run docker:image:api && npm run docker:image:web && npm run docker:image:app"
+  },
+  "dependencies": {
+    "@opentelemetry/auto-instrumentations-node": "^0.78.0",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.220.0",
+    "@opentelemetry/sdk-node": "^0.220.0",
+    "@willsoto/nestjs-prometheus": "^6.1.0",
+    "nest-winston": "^1.10.2",
+    "prom-client": "^15.1.3",
+    "winston": "^3.19.0",
+    "winston-loki": "^6.1.5"
   }
 }
