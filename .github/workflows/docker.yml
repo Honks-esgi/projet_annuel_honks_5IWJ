@@ -70,7 +70,7 @@ jobs:
             dockerfile: apps/mobile/Dockerfile
 
     steps:
-      # Résout si ce job doit builder selon les changements détectés ou le workflow_dispatch
+      # Se lance si ce job doit builder selon les changements détectés ou le workflow_dispatch
       - name: Resolve build flag
         id: check
         run: |
