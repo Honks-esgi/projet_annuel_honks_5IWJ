@@ -1,12 +1,11 @@
 import { registerOTel } from '@vercel/otel';
 
 export function register() {
+  process.env.OTEL_EXPORTER_OTLP_ENDPOINT ??= 'http://tempo:4318';
+
   registerOTel({
     serviceName: 'honks-web',
-    traceExporter: 'otlp',
-    otlpExporterConfig: {
-      url: process.env.OTEL_EXPORTER_OTLP_ENDPOINT ?? 'http://tempo:4318',
-    },
+    traceExporter: 'auto',
     instrumentationConfig: {
       fetch: { ignoreUrls: [/\/api\/health/] },
     },
