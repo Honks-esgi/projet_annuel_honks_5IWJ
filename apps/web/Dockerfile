@@ -23,4 +23,4 @@ COPY --from=build /app/apps/web/.next/static ./.next/static
 COPY --from=build /app/apps/web/public ./public
 EXPOSE 3001
 ENV PORT=3001
-CMD ["npm", "run", "dev"]
+CMD ["node", "server.js"]

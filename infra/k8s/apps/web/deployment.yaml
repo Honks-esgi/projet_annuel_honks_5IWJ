@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: honks-web
+  namespace: honks-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: honks-web
+  template:
+    metadata:
+      labels:
+        app: honks-web
+    spec:
+      containers:
+        - name: web
+          image: jsankare/honks-web:latest
+          ports:
+            - containerPort: 3001
+          envFrom:
+            - configMapRef:
+                name: honks-config
