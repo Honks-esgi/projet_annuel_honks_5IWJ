@@ -15,6 +15,7 @@ RUN npm ci --workspace=apps/api
 
 FROM base AS build
 COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/apps/api/node_modules ./apps/api/node_modules
 COPY shared ./shared
 COPY apps/api ./apps/api
 WORKDIR /app/apps/api
@@ -22,8 +23,9 @@ RUN npm run build
 
 FROM base AS runner
 ENV NODE_ENV=production
-WORKDIR /app
+WORKDIR /app/apps/api
 COPY --from=build /app/apps/api/dist ./dist
-COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/node_modules /app/node_modules
+COPY --from=deps /app/apps/api/node_modules ./node_modules
 EXPOSE 3000
 CMD ["node", "dist/main"]

@@ -32,9 +32,3 @@ spec:
                 name: honks-config
             - secretRef:
                 name: honks-secrets
-          readinessProbe:
-            httpGet:
-              path: /health
-              port: 3000
-            initialDelaySeconds: 10
-            periodSeconds: 5
