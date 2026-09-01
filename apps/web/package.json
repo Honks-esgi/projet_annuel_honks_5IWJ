@@ -1,7 +1,10 @@
 {
   "name": "honks-web",
   "version": "0.1.0",
+  "description": "Honks web frontend (Next.js) — vitrine + admin",
+  "author": "GRONDIN Florent, SANKARE Jordan, VANDERLYNDEN Louis-Martin",
   "private": true,
+  "license": "ISC",
   "scripts": {
     "dev": "next dev -p 3001",
     "build": "next build",

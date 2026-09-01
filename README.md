@@ -44,27 +44,58 @@ Le domaine honks.fr est deja reserve.
 | Documentation | Docusaurus | Documentation technique et d'exploitation |
 | Gestion projet | GitHub Projects | Organisation agile (kanban, sprints, tickets) |
 
+## Requirements
+
+- Node.js >= 22, npm >= 10
+- Docker >= 24 (Docker Desktop en local)
+
+## Demarrage rapide (dev)
+
+```bash
+npm install                    # installe tous les workspaces
+cp .env.example .env           # puis ajuster les valeurs
+
+# Option A — apps en local + infra en conteneurs
+docker compose -f docker-compose.dev.yml up -d postgres redis mailpit
+npm run dev                    # lance api + web + mobile en parallele
+# ou individuellement :
+npm run dev:api                # API http://localhost:3000 (health: /health)
+npm run dev:web                # Web http://localhost:3001
+npm run dev:mobile             # Mobile (Expo)
+
+# Option B — tout en conteneurs (hot reload via bind mounts)
+docker compose -f docker-compose.dev.yml up -d
+
+# Lancer les images publiées (CI Docker Hub)
+docker compose up -d
+```
+
 ## Arborescence
 
 ```text
 honks/
 ├── apps/
-│   ├── api/
-│   ├── web/
-│   └── mobile/
+│   ├── api/          # NestJS (Dockerfile multistage)
+│   ├── web/          # Next.js standalone (Dockerfile multistage)
+│   └── mobile/       # Expo / React Native
 ├── shared/
 │   └── types/
 ├── infra/
-│   ├── docker/
+│   ├── swarm/        # stacks Docker Swarm (proxy Traefik + app), scripts, doc
 │   ├── ansible/
 │   ├── monitoring/
 │   └── backup/
 ├── docs/
-├── docker-compose.yml
+├── docker-compose.yml   # dependances de dev uniquement
 ├── package.json
 ├── README.md
 └── .env.example
 ```
+
+## Production (Docker Swarm)
+
+Le deploiement clusterise (api ×2, web ×3, Traefik, secrets Docker, HTTPS)
+est documente dans [infra/swarm/README.md](infra/swarm/README.md).
 
 ## Organisation du repo
 
