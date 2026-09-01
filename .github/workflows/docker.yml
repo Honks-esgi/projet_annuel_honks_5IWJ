@@ -176,7 +176,7 @@ jobs:
 
       - name: Run Trivy vulnerability scanner
         id: trivy
-        uses: aquasecurity/trivy-action@a568a5854c6e5e0d717f80e34a1b1cf4f0bb5c28
+        uses: aquasecurity/trivy-action@0.31.0
         with:
           image-ref: ${{ matrix.app.image }}
           format: sarif
