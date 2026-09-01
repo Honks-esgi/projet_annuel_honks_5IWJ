@@ -1,20 +1,21 @@
 # Build context: repo root (to access shared/ packages)
-# Base image: Docker Hardened Image (dhi.io/node:22-alpine) — Node 20 est EOL depuis avril 2026
-FROM dhi.io/node:22-alpine AS base
+# Build stages use node:22-alpine (shell required for npm).
+# Final runner uses Docker Hardened Image (no shell needed at runtime).
+FROM node:22-alpine AS build-base
 WORKDIR /app
 
-FROM base AS dev
+FROM build-base AS dev
 COPY package*.json ./
 COPY apps/api/package*.json ./apps/api/
 RUN npm install
 EXPOSE 3000
 
-FROM base AS deps
+FROM build-base AS deps
 COPY package*.json ./
 COPY apps/api/package*.json ./apps/api/
 RUN npm ci --workspace=apps/api
 
-FROM base AS build
+FROM build-base AS build
 COPY --from=deps /app/node_modules ./node_modules
 COPY --from=deps /app/apps/api/node_modules ./apps/api/node_modules
 COPY shared ./shared
@@ -22,7 +23,7 @@ COPY apps/api ./apps/api
 WORKDIR /app/apps/api
 RUN npm run build
 
-FROM base AS runner
+FROM dhi.io/node:22-alpine AS runner
 ENV NODE_ENV=production
 WORKDIR /app/apps/api
 COPY --from=build /app/apps/api/dist ./dist

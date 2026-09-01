@@ -1,24 +1,26 @@
-# Base image: Docker Hardened Image (dhi.io/node:22-alpine) — Node 20 est EOL depuis avril 2026
-FROM dhi.io/node:22-alpine AS base
+# Build stages use node:22-alpine (shell required for npm).
+# Final runner uses Docker Hardened Image (no shell needed at runtime).
+FROM node:22-alpine AS build-base
 WORKDIR /app/apps/web
 ENV NEXT_TELEMETRY_DISABLED=1
 
-FROM base AS dev
+FROM build-base AS dev
 COPY apps/web/package*.json ./
 RUN npm install
 EXPOSE 3001
 
-FROM base AS deps
+FROM build-base AS deps
 COPY apps/web/package*.json ./
 RUN npm install
 
-FROM base AS build
+FROM build-base AS build
 COPY --from=deps /app/apps/web/node_modules ./node_modules
 COPY apps/web .
 RUN npm run build
 
-FROM base AS runner
+FROM dhi.io/node:22-alpine AS runner
 ENV NODE_ENV=production
+WORKDIR /app/apps/web
 COPY --from=build /app/apps/web/.next/standalone ./
 COPY --from=build /app/apps/web/.next/static ./.next/static
 COPY --from=build /app/apps/web/public ./public
