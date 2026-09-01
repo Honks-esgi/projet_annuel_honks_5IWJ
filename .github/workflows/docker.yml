@@ -186,7 +186,8 @@ jobs:
           vuln-type: os,library
           severity: CRITICAL,HIGH
           trivy-config: trivy.yaml
-          version: v0.58.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload SARIF to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v4
