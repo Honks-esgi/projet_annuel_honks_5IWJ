@@ -26,7 +26,7 @@ jobs:
         run: npm test -- --ci --json --outputFile=jest-results.json
         continue-on-error: true
       - name: Test Report
-        uses: dorny/test-reporter@31a54ee7ebcacc03a09ea7a71b96f699a9d58de0
+        uses: dorny/test-reporter@a43b3a5f7366b97d083190328d2c652e1a8b6aa2
         if: always()
         with:
           name: Jest Tests
