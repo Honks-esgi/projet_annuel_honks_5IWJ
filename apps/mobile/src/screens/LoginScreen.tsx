@@ -107,7 +107,6 @@ export function LoginScreen() {
           <HText variant="body" color={colors.textMuted}>
             Pas encore de compte ?{' '}
           </HText>
-          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           <TouchableOpacity onPress={() => router.push('/(auth)/register' as any)}>
             <HText variant="body" color={colors.accent}>
               Inscription

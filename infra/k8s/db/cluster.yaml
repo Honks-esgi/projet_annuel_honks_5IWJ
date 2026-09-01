@@ -1,0 +1,38 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: honks-db
+  namespace: honks-db
+spec:
+  instances: 3               # 1 primary + 2 replicas
+  imageName: ghcr.io/cloudnative-pg/postgresql:16
+
+  postgresql:
+    parameters:
+      max_connections: "200"
+
+  bootstrap:
+    initdb:
+      database: honks         # Nom de la BDD créée automatiquement
+      owner: honks
+      secret:
+        name: honks-db-credentials
+
+  storage:
+    size: 5Gi               # PVC de 5 Go par pod (via local-path-provisioner)
+
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "100m"
+    limits:
+      memory: "512Mi"
+      cpu: "500m"
+
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: node-role.kubernetes.io/control-plane
+                operator: DoesNotExist

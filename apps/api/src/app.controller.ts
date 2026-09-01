@@ -7,6 +7,11 @@ export class AppController {
 
   constructor(private readonly appService: AppService) {}
 
+  @Get('api')
+  healthCheck(): { status: string } {
+    return { status: 'ok' };
+  }
+
   @Get()
   getHello(@Query('source') source?: string): string {
     if (source === 'honks-mobile') {

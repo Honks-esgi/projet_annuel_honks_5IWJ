@@ -1,0 +1,43 @@
+name: CodeQL Security Scan
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+  schedule:
+    - cron: '0 2 * * 1'
+
+permissions: read-all
+
+jobs:
+  analyze:
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+    name: Analyze (${{ matrix.language }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [javascript-typescript]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@c4dd10e44af883a891fe31ced449bcb4a6728b9b
+        with:
+          languages: ${{ matrix.language }}
+          queries: security-extended
+
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@c4dd10e44af883a891fe31ced449bcb4a6728b9b
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@c4dd10e44af883a891fe31ced449bcb4a6728b9b
+        with:
+          category: /language:${{ matrix.language }}
+          upload: always

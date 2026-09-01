@@ -1,4 +1,5 @@
-FROM node:20-alpine AS base
+# Base image: Docker Hardened Image (dhi.io/node:22-alpine) — Node 20 est EOL depuis avril 2026
+FROM dhi.io/node:22-alpine@sha256:bda5b84db93934e4c35ef4da0fca279955c78be97dbb6bd7837d33d57d13f562 AS base
 WORKDIR /app/apps/web
 ENV NEXT_TELEMETRY_DISABLED=1
 
@@ -23,4 +24,4 @@ COPY --from=build /app/apps/web/.next/static ./.next/static
 COPY --from=build /app/apps/web/public ./public
 EXPOSE 3001
 ENV PORT=3001
-CMD ["npm", "run", "dev"]
+CMD ["node", "server.js"]

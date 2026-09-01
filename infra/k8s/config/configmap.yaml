@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: honks-config
+    namespace: honks-app
+data:
+    NODE_ENV: "production"
+    DB_HOST: "honks-db-rw.honks-db.svc.cluster.local" # natif CloudNativePG
+    DB_PORT: "5432"
+    DB_NAME: "honks"
+    DB_USER: "honks"
+    PROMETHEUS_URL: "http://prometheus.honks-monitoring.svc.cluster.local:9090"
+    LOKI_URL: "http://loki.honks-monitoring.svc.cluster.local:3100"
