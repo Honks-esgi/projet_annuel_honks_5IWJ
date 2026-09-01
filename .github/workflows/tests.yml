@@ -7,7 +7,9 @@ on:
       - develop
   pull_request:
 
-permissions: read-all
+permissions:
+  contents: read
+  checks: write
 
 jobs:
   jest:
@@ -21,4 +23,20 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Run tests
-        run: npm test
+        run: npm test -- --ci --json --outputFile=jest-results.json
+        continue-on-error: true
+      - name: Test Report
+        uses: dorny/test-reporter@31a54ee7ebcacc03a09ea7a71b96f699a9d58de0
+        if: always()
+        with:
+          name: Jest Tests
+          path: jest-results.json
+          reporter: jest-json
+          fail-on-error: true
+      - name: Upload test results
+        uses: actions/upload-artifact@4cec3d8aa04e39d1a68397de0c4cd6fb9dce8ec1
+        if: always()
+        with:
+          name: jest-results
+          path: jest-results.json
+          retention-days: 7

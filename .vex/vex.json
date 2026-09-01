@@ -1,0 +1,25 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://github.com/Honks-esgi/projet_annuel_honks_5IWJ/blob/main/.vex/vex.json",
+  "author": "Honks Team",
+  "timestamp": "2026-09-01T00:00:00Z",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "@id": "https://osv.dev/vulnerability/CVE-2023-30590"
+      },
+      "products": [
+        {
+          "@id": "pkg:docker/jsankare/honks-api",
+          "subcomponents": [
+            { "@id": "pkg:npm/node" }
+          ]
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_in_execute_path",
+      "impact_statement": "La fonctionnalité concernée n'est pas utilisée dans cette application."
+    }
+  ]
+}
