@@ -9,13 +9,14 @@ on:
   schedule:
     - cron: '0 2 * * 1'
 
-permissions:
-  contents: read
-  security-events: write
-  actions: read
+permissions: read-all
 
 jobs:
   analyze:
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
     name: Analyze (${{ matrix.language }})
     runs-on: ubuntu-latest
     strategy:
