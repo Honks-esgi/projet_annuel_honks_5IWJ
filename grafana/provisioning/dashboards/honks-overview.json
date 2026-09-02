@@ -4,7 +4,7 @@
     { "type": "datasource", "id": "prometheus", "name": "Prometheus", "version": "1.0.0" }
   ],
   "annotations": { "list": [] },
-  "description": "Honks API — métriques HTTP, mémoire, CPU",
+  "description": "Honks API — requêtes/s, erreurs 5xx, latence, routes",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
@@ -29,16 +29,16 @@
       },
       "gridPos": { "h": 4, "w": 6, "x": 0, "y": 0 },
       "id": 1,
-      "options": { "colorMode": "background", "graphMode": "area", "reduceOptions": { "calcs": ["lastNotNull"] } },
+      "options": { "colorMode": "background", "graphMode": "none", "justifyMode": "auto", "orientation": "auto", "reduceOptions": { "calcs": ["lastNotNull"] } },
+      "title": "Requêtes/s",
+      "type": "stat",
       "targets": [
         {
           "datasource": { "type": "prometheus", "uid": "prometheus" },
-          "expr": "rate(http_requests_total[2m])",
+          "expr": "sum(rate(http_requests_total[1m]))",
           "legendFormat": "req/s"
         }
-      ],
-      "title": "Requêtes / sec",
-      "type": "stat"
+      ]
     },
     {
       "datasource": { "type": "prometheus", "uid": "prometheus" },
@@ -49,114 +49,145 @@
             "mode": "absolute",
             "steps": [
               { "color": "green", "value": null },
-              { "color": "yellow", "value": 1 },
-              { "color": "red", "value": 5 }
+              { "color": "yellow", "value": 0.01 },
+              { "color": "red", "value": 0.05 }
             ]
           },
-          "unit": "percent"
+          "unit": "percentunit"
         }
       },
       "gridPos": { "h": 4, "w": 6, "x": 6, "y": 0 },
       "id": 2,
-      "options": { "colorMode": "background", "graphMode": "area", "reduceOptions": { "calcs": ["lastNotNull"] } },
+      "options": { "colorMode": "background", "graphMode": "none", "justifyMode": "auto", "orientation": "auto", "reduceOptions": { "calcs": ["lastNotNull"] } },
+      "title": "Taux d'erreurs 5xx",
+      "type": "stat",
       "targets": [
         {
           "datasource": { "type": "prometheus", "uid": "prometheus" },
-          "expr": "rate(http_requests_total{status=~\"5..\"}[2m]) / rate(http_requests_total[2m]) * 100",
-          "legendFormat": "% erreurs 5xx"
+          "expr": "sum(rate(http_requests_total{status=~\"5..\"}[1m])) / sum(rate(http_requests_total[1m]))",
+          "legendFormat": "5xx rate"
         }
-      ],
-      "title": "Taux d'erreurs 5xx",
-      "type": "stat"
+      ]
     },
     {
       "datasource": { "type": "prometheus", "uid": "prometheus" },
       "fieldConfig": {
-        "defaults": { "unit": "bytes" }
+        "defaults": {
+          "color": { "mode": "thresholds" },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 0.1 },
+              { "color": "red", "value": 0.5 }
+            ]
+          },
+          "unit": "s"
+        }
       },
       "gridPos": { "h": 4, "w": 6, "x": 12, "y": 0 },
       "id": 3,
-      "options": { "colorMode": "value", "graphMode": "area", "reduceOptions": { "calcs": ["lastNotNull"] } },
+      "options": { "colorMode": "background", "graphMode": "none", "justifyMode": "auto", "orientation": "auto", "reduceOptions": { "calcs": ["lastNotNull"] } },
+      "title": "Latence p95",
+      "type": "stat",
       "targets": [
         {
           "datasource": { "type": "prometheus", "uid": "prometheus" },
-          "expr": "process_resident_memory_bytes",
-          "legendFormat": "mémoire RSS"
+          "expr": "histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket[5m])) by (le))",
+          "legendFormat": "p95"
         }
-      ],
-      "title": "Mémoire RSS",
-      "type": "stat"
+      ]
     },
     {
       "datasource": { "type": "prometheus", "uid": "prometheus" },
       "fieldConfig": {
-        "defaults": { "unit": "short", "custom": { "lineWidth": 2 } }
+        "defaults": { "color": { "mode": "palette-classic" }, "unit": "reqps" }
       },
-      "gridPos": { "h": 8, "w": 24, "x": 0, "y": 4 },
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 4 },
       "id": 4,
-      "options": { "tooltip": { "mode": "multi" } },
+      "options": { "legend": { "displayMode": "list", "placement": "bottom" }, "tooltip": { "mode": "multi" } },
+      "title": "Requêtes/s par route",
+      "type": "timeseries",
       "targets": [
         {
           "datasource": { "type": "prometheus", "uid": "prometheus" },
-          "expr": "rate(http_requests_total[2m])",
-          "legendFormat": "{{method}} {{route}} — {{status}}"
+          "expr": "sum by (method, route) (rate(http_requests_total[1m]))",
+          "legendFormat": "{{method}} {{route}}"
         }
-      ],
-      "title": "Requêtes HTTP par route",
-      "type": "timeseries"
+      ]
     },
     {
       "datasource": { "type": "prometheus", "uid": "prometheus" },
       "fieldConfig": {
-        "defaults": { "unit": "s" }
+        "defaults": { "color": { "mode": "palette-classic" }, "unit": "s" }
       },
-      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 12 },
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 4 },
       "id": 5,
+      "options": { "legend": { "displayMode": "list", "placement": "bottom" }, "tooltip": { "mode": "multi" } },
+      "title": "Latence HTTP (p50 / p95 / p99)",
+      "type": "timeseries",
       "targets": [
         {
           "datasource": { "type": "prometheus", "uid": "prometheus" },
-          "expr": "histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m]))",
+          "expr": "histogram_quantile(0.50, sum(rate(http_request_duration_seconds_bucket[5m])) by (le))",
+          "legendFormat": "p50"
+        },
+        {
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
+          "expr": "histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket[5m])) by (le))",
           "legendFormat": "p95"
         },
         {
           "datasource": { "type": "prometheus", "uid": "prometheus" },
-          "expr": "histogram_quantile(0.50, rate(http_request_duration_seconds_bucket[5m]))",
-          "legendFormat": "p50"
+          "expr": "histogram_quantile(0.99, sum(rate(http_request_duration_seconds_bucket[5m])) by (le))",
+          "legendFormat": "p99"
         }
-      ],
-      "title": "Latence HTTP (p50 / p95)",
-      "type": "timeseries"
+      ]
     },
     {
       "datasource": { "type": "prometheus", "uid": "prometheus" },
       "fieldConfig": {
-        "defaults": { "unit": "bytes" }
+        "defaults": { "color": { "mode": "palette-classic" }, "unit": "short" }
       },
-      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 12 },
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 12 },
       "id": 6,
+      "options": { "legend": { "displayMode": "list", "placement": "bottom" }, "tooltip": { "mode": "multi" } },
+      "title": "Erreurs 5xx par route",
+      "type": "timeseries",
       "targets": [
         {
           "datasource": { "type": "prometheus", "uid": "prometheus" },
-          "expr": "process_resident_memory_bytes",
-          "legendFormat": "RSS"
-        },
+          "expr": "sum by (method, route) (rate(http_requests_total{status=~\"5..\"}[1m]))",
+          "legendFormat": "{{method}} {{route}}"
+        }
+      ]
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "fieldConfig": {
+        "defaults": { "color": { "mode": "palette-classic" }, "unit": "bytes" }
+      },
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 12 },
+      "id": 7,
+      "options": { "legend": { "displayMode": "list", "placement": "bottom" }, "tooltip": { "mode": "multi" } },
+      "title": "Mémoire Node.js (heap used)",
+      "type": "timeseries",
+      "targets": [
         {
           "datasource": { "type": "prometheus", "uid": "prometheus" },
-          "expr": "process_heap_bytes",
-          "legendFormat": "Heap"
+          "expr": "nodejs_heap_size_used_bytes",
+          "legendFormat": "heap used"
         }
-      ],
-      "title": "Mémoire Node.js",
-      "type": "timeseries"
+      ]
     }
   ],
-  "refresh": "30s",
-  "schemaVersion": 39,
+  "schemaVersion": 37,
+  "style": "dark",
   "tags": ["honks", "api"],
-  "time": { "from": "now-1h", "to": "now" },
+  "time": { "from": "now-30m", "to": "now" },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Honks — API Overview",
+  "title": "Honks API",
   "uid": "honks-api-overview",
-  "version": 1
+  "version": 2
 }

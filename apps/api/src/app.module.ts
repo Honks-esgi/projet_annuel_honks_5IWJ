@@ -2,23 +2,17 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PrometheusModule } from '@willsoto/nestjs-prometheus';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { APP_INTERCEPTOR } from '@nestjs/core';
+import { HttpMetricsInterceptor } from './http-metrics.interceptor';
 
 @Module({
   imports: [
-      PrometheusModule.register(),
-      TypeOrmModule.forRoot({
-        type: 'postgres',
-        host: process.env.DB_HOST,
-        port: parseInt(process.env.DB_PORT ?? '5432'),
-        username: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME,
-        autoLoadEntities: true,
-        synchronize: false,
-    }),
+    PrometheusModule.register(),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    { provide: APP_INTERCEPTOR, useClass: HttpMetricsInterceptor },
+  ],
 })
 export class AppModule {}

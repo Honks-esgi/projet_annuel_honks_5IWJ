@@ -3,6 +3,7 @@
 [![Lint](https://github.com/Honks-esgi/projet_annuel_honks_5IWJ/actions/workflows/lint.yml/badge.svg)](https://github.com/Honks-esgi/projet_annuel_honks_5IWJ/actions/workflows/lint.yml)
 [![Tests](https://github.com/Honks-esgi/projet_annuel_honks_5IWJ/actions/workflows/tests.yml/badge.svg)](https://github.com/Honks-esgi/projet_annuel_honks_5IWJ/actions/workflows/tests.yml)
 [![Docker Build & Push](https://github.com/Honks-esgi/projet_annuel_honks_5IWJ/actions/workflows/docker.yml/badge.svg)](https://github.com/Honks-esgi/projet_annuel_honks_5IWJ/actions/workflows/docker.yml)
+[![CodeQL](https://github.com/Honks-esgi/projet_annuel_honks_5IWJ/actions/workflows/codeql.yml/badge.svg)](https://github.com/Honks-esgi/projet_annuel_honks_5IWJ/actions/workflows/codeql.yml)
 
 [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/Honks-esgi/projet_annuel_honks_5IWJ/badge)](https://scorecard.dev/viewer/?uri=github.com/Honks-esgi/projet_annuel_honks_5IWJ)
 
