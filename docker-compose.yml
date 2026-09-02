@@ -10,7 +10,8 @@ services:
   web:
     image: jsankare/honks-web:${TAG:-latest}
     ports:
-      - "3001:3001"
+      # internal port 3000
+      - "3001:3000"
     env_file:
       - .env
     depends_on:

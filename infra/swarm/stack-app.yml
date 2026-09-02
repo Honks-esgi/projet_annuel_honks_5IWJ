@@ -1,0 +1,162 @@
+version: '3.8'
+
+services:
+  api:
+    image: ${REGISTRY}/honks-api:${TAG:-latest}
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      CORS_ORIGINS: https://${DOMAIN}
+      # visible via inspect
+      DATABASE_URL: postgresql://honks:${POSTGRES_PASSWORD}@postgres:5432/honks
+      REDIS_URL: redis://:${REDIS_PASSWORD}@redis:6379
+    networks:
+      - proxy_public
+      - backend
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 1
+        order: start-first
+        failure_action: rollback
+        monitor: 30s
+      rollback_config:
+        parallelism: 1
+        order: start-first
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+      resources:
+        limits:
+          cpus: '0.75'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+      labels:
+        - traefik.enable=true
+        - traefik.http.routers.api.rule=Host(`api.${DOMAIN}`)
+        - traefik.http.routers.api.entrypoints=websecure
+        - traefik.http.routers.api.tls.certresolver=letsencrypt
+        - traefik.http.routers.api.middlewares=secure-headers@swarm
+        - traefik.http.services.api.loadbalancer.server.port=3000
+
+  web:
+    image: ${REGISTRY}/honks-web:${TAG:-latest}
+    environment:
+      NODE_ENV: production
+    networks:
+      - proxy_public
+    deploy:
+      replicas: 3
+      update_config:
+        parallelism: 1
+        order: start-first
+        failure_action: rollback
+        monitor: 30s
+      rollback_config:
+        parallelism: 1
+        order: start-first
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 384M
+        reservations:
+          cpus: '0.10'
+          memory: 96M
+      labels:
+        - traefik.enable=true
+        - traefik.http.routers.web.rule=Host(`${DOMAIN}`) || Host(`www.${DOMAIN}`)
+        - traefik.http.routers.web.entrypoints=websecure
+        - traefik.http.routers.web.tls.certresolver=letsencrypt
+        - traefik.http.routers.web.middlewares=secure-headers@swarm
+        - traefik.http.services.web.loadbalancer.server.port=3000
+
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: honks
+      POSTGRES_DB: honks
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+    secrets:
+      - postgres_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - backend
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U honks -d honks']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.labels.db == true
+      update_config:
+        order: stop-first
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '1.00'
+          memory: 1G
+
+  redis:
+    image: redis:7-alpine
+    # auth even internal
+    command:
+      - sh
+      - -c
+      - exec redis-server --appendonly yes --requirepass "$$(cat /run/secrets/redis_password)"
+    secrets:
+      - redis_password
+    volumes:
+      - redis_data:/data
+    networks:
+      - backend
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - redis-cli -a "$$(cat /run/secrets/redis_password)" ping | grep PONG
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.labels.db == true
+      update_config:
+        order: stop-first
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 256M
+
+networks:
+  proxy_public:
+    external: true
+  backend:
+    driver: overlay
+    internal: true
+    driver_opts:
+      encrypted: 'true'
+
+volumes:
+  postgres_data:
+  redis_data:
+
+secrets:
+  postgres_password:
+    external: true
+  redis_password:
+    external: true

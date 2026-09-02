@@ -42,11 +42,12 @@ android/build/
 ios/build/
 ios/Pods/
 *.keystore
-/docs
 
 # Tests / playwright
 playwright-report/
 test-results/
+
+infra/swarm/swarm.env
 
 # Docker / infra local artifacts
 infra/**/.terraform/

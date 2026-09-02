@@ -1,8 +1,10 @@
 import './tracing';
+import { Logger, ValidationPipe, VersioningType } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
+import helmet from 'helmet';
 import { AppModule } from './app.module';
 import { WinstonModule } from 'nest-winston';
-import { Logger } from '@nestjs/common';
 import * as winston from 'winston';
 import LokiTransport from 'winston-loki';
 
@@ -11,20 +13,47 @@ async function bootstrap() {
     logger: WinstonModule.createLogger({
       transports: [
         new winston.transports.Console({
-          format: winston.format.combine(winston.format.timestamp(), winston.format.simple()),
+          format: winston.format.combine(
+            winston.format.timestamp(),
+            winston.format.simple(),
+          ),
         }),
         new LokiTransport({
           host: 'http://loki:3100',
           labels: { app: 'honks-api' },
           json: true,
-          onConnectionError: (err) => console.error('Loki connection error', err),
+          onConnectionError: (err) =>
+            console.error('Loki connection error', err),
         }),
       ],
     }),
   });
+  const config = app.get(ConfigService);
+  const logger = new Logger('Bootstrap');
 
-  const port = process.env.PORT ?? 3000;
+  app.use(helmet());
+
+  const corsOrigins = (config.get<string>('CORS_ORIGINS') ?? '')
+    .split(',')
+    .map((origin) => origin.trim())
+    .filter((origin) => origin.length > 0);
+  app.enableCors({ origin: corsOrigins, credentials: true });
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+    }),
+  );
+
+  // health unprefixed
+  app.setGlobalPrefix('api', { exclude: ['health'] });
+  app.enableVersioning({ type: VersioningType.URI, defaultVersion: '1' });
+  app.enableShutdownHooks();
+
+  const port = config.get<number>('PORT', 3000);
   await app.listen(port);
-  new Logger('Bootstrap').log(`API started on port ${port}`);
+  logger.log(`API listening on port ${port}`);
 }
-bootstrap();
+void bootstrap();
