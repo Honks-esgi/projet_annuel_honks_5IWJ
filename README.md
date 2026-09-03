@@ -83,10 +83,17 @@ honks/
 - Un .gitignore global + un .gitignore local par application
 - Fichiers .gitkeep pour versionner les dossiers vides
 
-## Prochaines etapes suggerees
+## Screenshots
 
-1. Initialiser les workspaces pour API, web et mobile.
-2. Ajouter un premier docker-compose de dev.
-3. Definir le schema de donnees initial (users, groups, sessions, invites).
-4. Ecrire les premiers contrats d'API et evenements temps reel.
+### grafana
+![grafana](public/grafana.webp)
+
+### jobs-passing
+![jobs-passing](public/jobs-passing.webp)
+
+### prometheus
+![prometheus](public/prometheus.webp)
+
+### trivy
+![trivy](public/trivy.webp)
 
