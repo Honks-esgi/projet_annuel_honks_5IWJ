@@ -4,8 +4,10 @@ import {
   HealthCheckService,
   MemoryHealthIndicator,
 } from '@nestjs/terminus';
+import { Public } from '../auth/public.decorator';
 
-// version-neutral probes
+// version-neutral, unauthenticated probes (hit by Docker/K8s healthchecks, no JWT available)
+@Public()
 @Controller({ path: 'health', version: VERSION_NEUTRAL })
 export class HealthController {
   constructor(

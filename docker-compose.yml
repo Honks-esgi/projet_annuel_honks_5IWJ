@@ -1,6 +1,6 @@
 services:
   api:
-    image: jsankare/honks-api:${TAG:-latest}
+    # image: jsankare/honks-api:${TAG:-latest}
     ports:
       - "3000:3000"
     env_file:
@@ -8,18 +8,41 @@ services:
     restart: unless-stopped
 
   web:
-    image: jsankare/honks-web:${TAG:-latest}
+    # image: jsankare/honks-web:${TAG:-latest}
     ports:
-      # internal port 3000
-      - "3001:3000"
+      - "3001:3001"
     env_file:
       - .env
     depends_on:
       - api
     restart: unless-stopped
+    
+  postgres:
+    image: postgres:18-alpine
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  adminer:
+    image: adminer:5
+    restart: unless-stopped
+    environment:
+      - ADMINER_DEFAULT_SERVER=postgres
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget --spider -q http://localhost:8080 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
 
   mobile:
-    image: jsankare/honks-app:${TAG:-latest}
+    # image: jsankare/honks-app:${TAG:-latest}
     ports:
       - "8081:8081"
     env_file:
