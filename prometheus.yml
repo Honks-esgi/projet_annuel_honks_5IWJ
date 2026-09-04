@@ -8,5 +8,8 @@ scrape_configs:
       - targets: ['localhost:9090']
 
   - job_name: 'api'
+    # main.ts: setGlobalPrefix('api') + URI versioning (defaultVersion '1') apply to
+    # the PrometheusController too, so the real route is /api/v1/metrics, not /metrics.
+    metrics_path: /api/v1/metrics
     static_configs:
       - targets: ['api:3000']

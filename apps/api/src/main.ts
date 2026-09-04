@@ -3,10 +3,14 @@ import { Logger, ValidationPipe, VersioningType } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import helmet from 'helmet';
+import { PrometheusController } from '@willsoto/nestjs-prometheus';
 import { AppModule } from './app.module';
+import { Public } from './auth/public.decorator';
 import { WinstonModule } from 'nest-winston';
 import * as winston from 'winston';
 import LokiTransport from 'winston-loki';
+
+Public()(PrometheusController);
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {

@@ -8,6 +8,8 @@ FROM build-base AS dev
 COPY package*.json ./
 COPY apps/api/package*.json ./apps/api/
 RUN npm install
+COPY shared ./shared
+COPY apps/api ./apps/api
 EXPOSE 3000
 
 FROM build-base AS deps

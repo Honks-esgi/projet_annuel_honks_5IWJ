@@ -6,15 +6,17 @@ services:
       target: dev
     working_dir: /app/apps/api
     command: npm run start:dev
+    tty: true
     volumes:
-      - .:/app
-      - api_modules:/app/node_modules
-    ports:
-      - "3000:3000"
-    env_file: .env
+      - ./apps/api/src:/app/apps/api/src
+      - ./apps/api/test:/app/apps/api/test
     environment:
       NODE_ENV: development
-      # same network name
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: ${POSTGRES_USER:-honks}
+      DB_PASSWORD: ${POSTGRES_PASSWORD:?set it in .env}
+      DB_NAME: ${POSTGRES_DB:-honks}
       DATABASE_URL: postgresql://${POSTGRES_USER:-honks}:${POSTGRES_PASSWORD:?set it in .env}@postgres:5432/${POSTGRES_DB:-honks}
       REDIS_URL: redis://redis:6379
     depends_on:
@@ -22,6 +24,8 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
+    networks:
+      - honks-nest-api
 
   web:
     build:
@@ -33,13 +37,10 @@ services:
     volumes:
       - .:/app
       - web_modules:/app/apps/web/node_modules
-    ports:
-      - "3001:3001"
-    env_file: .env
     environment:
       NODE_ENV: development
-    depends_on:
-      - api
+    networks:
+      - honks-nest-api
 
   mobile:
     build:
@@ -51,18 +52,13 @@ services:
     volumes:
       - .:/app
       - mobile_modules:/app/node_modules
-    ports:
-      - "8081:8081"
-    env_file: .env
     environment:
       NODE_ENV: development
       DOCKER: "1"
-    depends_on:
-      - api
+    networks:
+      - honks-nest-api
 
   postgres:
-    image: postgres:17-alpine
-    restart: unless-stopped
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-honks}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set it in .env}
@@ -71,12 +67,16 @@ services:
       # loopback only
       - "127.0.0.1:5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
-      interval: 5s
-      timeout: 3s
-      retries: 10
+      - postgres_data:/var/lib/postgresql
+    networks:
+      - honks-nest-api
+
+  adminer:
+    ports:
+      - "8080:8080"
+    networks:
+      - honks-nest-api
+
 
   redis:
     image: redis:7-alpine
@@ -91,6 +91,8 @@ services:
       interval: 5s
       timeout: 3s
       retries: 10
+    networks:
+      - honks-nest-api
 
   # dev email catcher
   mailpit:
@@ -102,6 +104,8 @@ services:
     environment:
       MP_SMTP_AUTH_ACCEPT_ANY: 1
       MP_SMTP_AUTH_ALLOW_INSECURE: 1
+    networks:
+      - honks-nest-api
 
   grafana:
     image: grafana/grafana:latest
@@ -118,6 +122,8 @@ services:
       - ./grafana/provisioning:/etc/grafana/provisioning
     depends_on:
       - api
+    networks:
+      - honks-nest-api
 
   prometheus:
     image: prom/prometheus:latest
@@ -128,6 +134,8 @@ services:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     depends_on:
       - api
+    networks:
+      - honks-nest-api
 
   tempo:
     image: grafana/tempo:latest
@@ -141,6 +149,8 @@ services:
     command: -config.file=/etc/tempo/tempo.yaml
     depends_on:
       - api
+    networks:
+      - honks-nest-api
 
   loki:
     image: grafana/loki:latest
@@ -152,9 +162,14 @@ services:
     command: -config.file=/etc/loki/local-config.yaml
     depends_on:
       - api
+    networks:
+      - honks-nest-api
+
+networks:
+  honks-nest-api:
+    driver: bridge
 
 volumes:
-  api_modules:
   web_modules:
   mobile_modules:
   postgres_data:
