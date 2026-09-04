@@ -41,9 +41,11 @@
     "docker:image:api": "TAG=$(git rev-parse --abbrev-ref HEAD | sed 's/\\//-/g') && docker build -f apps/api/Dockerfile -t jsankare/honks-api:$TAG . && docker push jsankare/honks-api:$TAG",
     "docker:image:web": "TAG=$(git rev-parse --abbrev-ref HEAD | sed 's/\\//-/g') && docker build -f apps/web/Dockerfile -t jsankare/honks-web:$TAG . && docker push jsankare/honks-web:$TAG",
     "docker:image:app": "TAG=$(git rev-parse --abbrev-ref HEAD | sed 's/\\//-/g') && docker build -f apps/mobile/Dockerfile -t jsankare/honks-app:$TAG . && docker push jsankare/honks-app:$TAG",
-    "docker:image:all": "npm run docker:image:api && npm run docker:image:web && npm run docker:image:app"
+    "docker:image:all": "npm run docker:image:api && npm run docker:image:web && npm run docker:image:app",
+    "prepare": "husky"
   },
   "devDependencies": {
-    "concurrently": "^9.1.2"
+    "concurrently": "^9.1.2",
+    "husky": "^9.1.7"
   }
 }
